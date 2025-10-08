@@ -50,7 +50,7 @@ export async function transcribeAudio(previousState, formData) {
     const audioBase64 = audioBuffer.toString("base64");
 
     // Get the generative model
-    const model = genAI.getGenerativeModel({ model: "gemini-2.5-pro" });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
     // The prompt to guide the AI for transcription and speaker labeling
     const prompt = `
@@ -214,12 +214,12 @@ Rules and style:
 Transcript:
 ${transcript}`;
   const response = openai.chat.completions.parse({
-    model: "gemini-2.5-pro",
+    model: "gemini-2.5-flash",
     messages: [{ role: "user", content: prompt }],
     response_format: zodResponseFormat(CalendarEvent, "event"),
   });
   const response2 = openai.chat.completions.create({
-    model: "gemini-2.5-pro",
+    model: "gemini-2.5-flash",
     messages: [{ role: "user", content: promptForReport }],
   });
 
